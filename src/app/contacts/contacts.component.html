@@ -1,7 +1,14 @@
 <div class="container spacer">
     <div class="card " style="width:100%;">
         <div class="card-header text-center">Liste des Contacts</div>
-        <div class="panel-body">
+        <div class="card-body">
+
+            <div>
+
+                <label>Mot Clé:</label>
+                <input type="text" [(ngModel)] = "motCle">
+                <button (click)="chercher()" class="btn btn-primary">Chercher</button>
+            </div>
 
            <table class="table">
                <tr>
@@ -11,7 +18,7 @@
                    <th>EMAIL</th>
                    
                </tr>
-               <tr *ngFor="let c of pageContact$.content">
+               <tr *ngFor="let c of pageContact$">
                    <td>{{c.id}}</td>
                    <td>{{c.nom}}</td>
                    <td>{{c.prenom}}</td>
@@ -19,6 +26,14 @@
                    
                </tr>
                </table>
+               <div class="container">
+                   <ul class="nav nav-pills">
+                       <li  class="nav-item" *ngFor="let p of pages; let i=index">
+                       <a [ngClass]="{'active':i==page}" class="nav-link " href="" (click)="setPage(i,$event)">{{i}}</a>
+                          
+                       </li>
+                   </ul>
+               </div>
         </div>
     </div>
 </div>

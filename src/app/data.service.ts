@@ -1,16 +1,23 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from './user.model';
-
+import { Observable } from 'rxjs';
+ 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-apiUrl=  'http://localhost:8080/chercherContact?mc=a&page=0&size=5'
+ 
   constructor(private http:HttpClient) { }
 
-  getUsers(){
-    return this.http.get<User[]>(this.apiUrl)
+  getUsers(motCle:string,page:number,size:number):Observable<any>{
+     
+    let resp = this.http.get("http://localhost:8080/chercherContact?mc="+motCle+"&page="+page+"&size="+size)
+    return resp;
+  }
+
+  saveContact(contact:User):Observable<any>{
+    return this.http.post("http://localhost:8080/contacts",contact)
   }
 }
 

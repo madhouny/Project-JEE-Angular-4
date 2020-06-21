@@ -13,14 +13,35 @@ import { User } from '../user.model';
 })
 
 export class ContactsComponent implements OnInit {
-pageContact$:User[];
-  constructor(private dataService:DataService) { }
+public pageContact$:Array<any>;
+public pages:Array<number>;
+motCle:string="";
+page:number=0;
+size:number=3;
 
+  constructor(private dataService:DataService) { }
+ 
   ngOnInit() {
 
-return this.dataService.getUsers().subscribe(data=>this.pageContact$=data)
- /*let resp = this.http.get("http://localhost:8080/chercherContact?mc=a&page=0&size=5")
- resp.subscribe((data)=>this.pageContact=data);*/
+ 
+ 
   }
-
+  doSearch(){
+    this.dataService.getUsers(this.motCle,this.page,this.size).
+    subscribe(data=>{
+      
+      this.pageContact$=data['content'];
+      this.pages = new Array(data['totalPages'])
+    },err=>{console.log(err);
+    })
+  
+  }
+  chercher(){
+    this.doSearch();
+  }
+  setPage(i,event:any){
+    event.preventDefault();
+    this.page=i;
+    this.doSearch();
+  }
 }
