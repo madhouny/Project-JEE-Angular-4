@@ -4,6 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { DataService } from '../data.service';
 import { User } from '../user.model';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -19,11 +20,11 @@ motCle:string="";
 page:number=0;
 size:number=3;
 
-  constructor(private dataService:DataService) { }
+  constructor(private dataService:DataService, public router:Router) { }
  
   ngOnInit() {
 
- 
+    
  
   }
   doSearch(){
@@ -43,5 +44,21 @@ size:number=3;
     event.preventDefault();
     this.page=i;
     this.doSearch();
+  }
+
+  OnEdit(id:number,event){
+    event.preventDefault();
+    this.router.navigate(['edit-contact',id])
+  }
+
+  OnDelete(id,event){
+    event.preventDefault();
+    this.dataService.deleteContact(id)
+    .subscribe(data=>{
+
+      this.pageContact$=data;
+      
+    })
+    
   }
 }

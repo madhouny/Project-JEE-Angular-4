@@ -1,0 +1,38 @@
+
+
+<div class="container spacer">
+    <div class="card " style="width:100%;">
+        <div class="card-header text-center">Ajouter un Contact</div>
+        <div class="card-body">
+            <form #f="ngForm" (ngSubmit)="onSaveContact(f.value)">
+                <div class="form-group">
+                    <label class="control-label">Nom:</label>
+                    <input #nom="ngModel" class="form-control" type="text" name="nom" ngModel required>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Prenom:</label>
+                    <input class="form-control" type="text" name="prenom" ngModel required>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Email:</label>
+                    <input class="form-control" type="email" name="email" ngModel required email>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">dateNaissance:</label>
+                    <input class="form-control" type="date" name="dateNaissance" ngModel required>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Tel:</label>
+                    <input class="form-control" type="text" name="tel" ngModel required>
+                </div>
+                
+                <button [disabled]="!f.valid" type="submit" class="btn btn-primary">Save</button>
+
+            </form>
+        </div>  
+    </div>      
+</div>

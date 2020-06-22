@@ -23,6 +23,13 @@
                    <td>{{c.nom}}</td>
                    <td>{{c.prenom}}</td>
                    <td>{{c.email}}</td>
+                   <td>
+                       <a  class="nav-link" href=""  (click)="OnEdit(c.id,$event)">Edit</a>
+                   </td>
+
+                   <td>
+                    <a  class="nav-link" href=""  (click)="OnDelete(c.id,$event)">Delete</a>
+                </td>
                    
                </tr>
                </table>

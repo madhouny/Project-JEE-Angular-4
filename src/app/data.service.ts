@@ -19,6 +19,21 @@ export class DataService {
   saveContact(contact:User):Observable<any>{
     return this.http.post("http://localhost:8080/contacts",contact)
   }
+
+  getC(id:number):Observable<any>{
+    
+    let resp = this.http.get("http://localhost:8080/contacts/"+id)
+    return resp;
+  }
+
+  updateContact(contact:User):Observable<any>{
+    return this.http.put("http://localhost:8080/contacts/"+contact.id,contact)
+  }
+
+  deleteContact(id:number):Observable<any>{
+    return this.http.delete("http://localhost:8080/contacts/"+id)
+  }
+
 }
 
 
